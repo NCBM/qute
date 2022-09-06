@@ -21,7 +21,7 @@ def receive():
     if data["post_type"] == "message":
         if data["message_type"] == "group":
             group_msg_queue[data["group_id"]].append(data["message_id"])
-        else:
+        elif data["message_type"] == "friend":
             friend_msg_queue[data["user_id"]].append(data["message_id"])
     return "OK", 200
 
