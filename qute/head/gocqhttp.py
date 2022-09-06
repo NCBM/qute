@@ -62,3 +62,24 @@ def send_msg(
     else:
         raise ValueError("Message type must be 'private' or 'group'")
     return _get(conf.root, "send_msg", access_token=conf.token, **data)
+
+
+def get_msg(conf: Config, mid: int):
+    return _get(conf.root, "get_msg", access_token=conf.token, message_id=mid)
+
+
+def get_group_member_info(
+    conf: Config, gid: int, uid: int, cache: bool = True
+):
+    return _get(
+        conf.root, "get_group_member_info", access_token=conf.token,
+        group_id=gid, user_id=uid, no_cache=not cache
+    )
+
+
+def get_friend_list(conf: Config):
+    return _get(conf.root, "get_friend_list", access_token=conf.token)
+
+
+def get_group_list(conf: Config):
+    return _get(conf.root, "get_group_list", access_token=conf.token)
